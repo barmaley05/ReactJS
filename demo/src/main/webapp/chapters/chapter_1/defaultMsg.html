@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello React</title>
+		<script src="..\js\react-with-addons-0.14.0.js" >
+		</script>
+		<script src="..\js\react-dom-0.14.0.js" />
+		</script>
+		<script src="..\js\JSXTransformer-0.13.1.js" />
+		</script>
+	</head>
+	<body>
+		<div id="view" />
+		<script type="text/jsx">
+			var HelloReact = React.createClass({
+				getDefaultProps: function(){
+					return {
+							message: 'Anonimous'
+							};
+				},
+				render:function(){
+					return (
+							<h1>Hello {this.props.message}</h1>
+							);
+				}
+			});
+			ReactDOM.render(<HelloReact />, document.getElementById('view'));
+		</script>
+	</body>
+</html>

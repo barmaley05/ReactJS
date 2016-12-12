@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello React</title>
+		<script src="..\js\react-with-addons-0.14.0.js" >
+		</script>
+		<script src="..\js\react-dom-0.14.0.js" />
+		</script>
+		<script src="..\js\JSXTransformer-0.13.1.js" />
+		</script>
+	</head>
+	<body>
+		<div id="view" />
+		<script type="text/jsx">
+			var HelloReact = React.createClass({
+				getInitialState:function(){
+					return {message:'Anonimous'};
+				},
+				updateMessage:function(e){
+					this.setState({message:e.target.value});
+				},
+				render:function(){
+					return <div>
+								<div>Hello React</div>
+								<input type="text" onChange={this.updateMessage} />
+								<div>Hello {this.state.message}</div>
+						   </div>
+				}
+			})
+			ReactDOM.render(<HelloReact />, document.getElementById('view'));
+				
+		</script>
+	</body>
+</html>

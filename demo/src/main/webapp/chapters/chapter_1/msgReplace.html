@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello React</title>
+		<script src="https://fb.me/react-with-addons-0.14.0.js" >
+		</script>
+		<script src="https://fb.me/react-dom-0.14.0.js" />
+		</script>
+		<script src="http://fb.me/JSXTransformer-0.13.1.js" />
+		</script>
+	</head>
+	<body>
+		<div id="view" />
+		<script type="text/jsx">
+			var HelloReact = React.createClass({
+				render:function(){
+					return <div>
+								<div>Hello {this.props.name1}</div>
+								<div>Hello {this.props.name2}</div>
+							</div>
+				}
+			});
+			ReactDOM.render(<HelloReact name1="Murad" name2="Indira" />, document.body);
+		</script>
+	</body>
+</html>
