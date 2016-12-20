@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello React</title>
+		<script src="..\..\lib\react-with-addons-0.14.0.js" >
+		</script>
+		<script src="..\..\lib\react-dom-0.14.0.js" >
+		</script>
+		<script src="..\..\lib\JSXTransformer-0.13.1.js" >
+		</script>
+	</head>
+	<body>
+		<div id="view" />
+		<script type="text/jsx">
+			var HelloMessage = React.createClass({
+					render: function() {
+					return <h2>{this.props.message}</h2>;
+				}
+			});
+
+			var Button = React.createClass({
+			   render: function() {
+				   return <button onClick={this.props.onClick}>{this.props.children}</button>
+			   }
+			});
+
+			var GlyphIcon = React.createClass({
+			   render: function() {
+				   return <span className={'glyphicon glyphicon-' + this.props.icon}></span>
+			   }
+			});
+
+			var TextBox = React.createClass({
+				getInitialState: function() {
+					return { isEditing: false, text: this.props.label }
+				},
+				update: function() {
+					var value = React.findDOMNode(this.refs.messageTextBox).value;
+					this.setState(
+						{
+							isEditing: false
+						});
+					this.props.update(value);
+				},
+				edit: function() {
+					this.setState({ isEditing: true});
+				},
+				render: function() {
+					return (
+						<div>
+						  {this.props.label}<br/>
+							<input type='text' ref='messageTextBox' disabled={!this.state.isEditing}/>
+							{
+								this.state.isEditing ?
+									<Button onClick={this.update}><GlyphIcon icon='ok'/> Update</Button>
+									:
+									<Button onClick={this.edit}><GlyphIcon icon='pencil'/> Edit</Button>
+								}
+						</div>
+					);
+				}
+			});
+
+			var HelloReact = React.createClass({
+				getInitialState: function () {
+					return { firstName: '', lastName: ''}
+				},
+				update: function(key, value) {
+					var newState = {};
+					newState[key] = value;
+					this.setState(newState);
+				},
+				render: function() {
+					return (
+						<div>
+							<HelloMessage
+								message={'Hello ' + this.state.firstName + ' ' + this.state.lastName}>
+							</HelloMessage>
+							<TextBox label='First Name' update={this.update.bind(null, 'firstName')}>
+							</TextBox>
+							<TextBox label='Last Name'
+								update={this.update.bind(null, 'lastName')}>
+							</TextBox>
+						</div>
+					);
+				}
+			});
+
+			ReactDOM.render(<HelloReact/>, document.getElementById('view'));
+		</script>
+	</body>
+</html>
